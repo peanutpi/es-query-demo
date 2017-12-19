@@ -1,0 +1,23 @@
+version: "2"
+services:
+  elasticsearch:
+    image: elasticsearch:2.4.6
+    mem_limit: 4g
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - ES_JAVA_OPTS=-Xmx2048m -Xms2048m
+    volumes:
+      - ./config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+
+  kibana:
+    image: sxmichael/kibana
+    ports:
+        - 5601:5601
+    links:
+        - elasticsearch
+#      - ./es/data/:/usr/share/elasticsearch/data/
+#      - ./es/config/logging.yml:/usr/share/elasticsearch/config/logging.yml
+#      - ./es/config/userdict_ja.txt:/usr/share/elasticsearch/config/userdict_ja.txt
+#      - ./es/logs/:/var/log/elasticsearch/
