@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +33,8 @@ public class UserResource {
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public List<User> getPerson(@RequestParam String freeText) {
-		return userService.searchPersonAnalysed(freeText);
+	public List<User> getPerson(@RequestParam(required=false) String q, Pageable pageable) {
+		return userService.searchPersonAnalysed(q, pageable);
 	}
 
 }

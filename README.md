@@ -78,7 +78,9 @@ POST http://localhost:9200/test/user/_bulk
 {"age": 21,"name": "Z)bham .2"}
 ```
 
-- GET `/users/search?freeText=so` to search in the existing documents on elasticsearch.
+- GET `/users/search?q=so` to search in the existing documents on elasticsearch.
+- Here query param `q` is optional. by default it'll return everything.
+- This also have query param for pagination, `size` & `page`. By default the value for `page` is `0`
 - Default it'll sort on the user's name field. 
 
 ### Config
